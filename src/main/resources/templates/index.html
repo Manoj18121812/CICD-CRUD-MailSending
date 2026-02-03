@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>User List</h2>
+
+    <a class="btn btn-add" href="/add">Add New</a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="u : ${users}">
+            <td th:text="${u.name}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.phone}"></td>
+            <td>
+                <a class="btn btn-edit"
+                   th:href="@{/edit/{id}(id=${u.id})}">Edit</a>
+
+                <a class="btn btn-delete"
+                   th:href="@{/delete/{id}(id=${u.id})}"
+                   onclick="return confirm('Are you sure?')">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>
